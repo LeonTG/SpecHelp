@@ -45,23 +45,9 @@ public class InteractListener implements Listener {
                 Player target = players.get(index);
                 player.teleport(target);
                 player.sendMessage("§bTelporting you to " + ChatColor.GOLD + target.getName() + "§7.");
-
-
-
-
-
-
             }
-
-
-
-
-
         }
     }
-
-
-
 }
 
 

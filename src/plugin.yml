@@ -1,0 +1,5 @@
+name: SpecHelp
+author: PolarBlunk
+version: 1.0
+description: Makes it easier to spectate.
+main: com.polarblunk.SpecHelp.Main

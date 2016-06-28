@@ -9,7 +9,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -22,13 +21,13 @@ public class InteractListener implements Listener {
     private void on(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         
-        if (player.getGameMode != GameMode.SPECTATOR) {
+        if (player.getGameMode() != GameMode.SPECTATOR) {
             return;
         }
         
         Action action = event.getAction();
         
-        if (!action.equals(Action.LEFT_CLICK_AIR) && !action.equals(Action.LEFT_CLICK_BLOCK) {
+        if (!action.equals(Action.LEFT_CLICK_AIR) && !action.equals(Action.LEFT_CLICK_BLOCK)) {
             return;
         }
 

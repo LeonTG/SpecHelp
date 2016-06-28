@@ -13,41 +13,36 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Author: PolarBlunk
+ * @author PolarBlunk
  */
-
 public class InteractListener implements Listener {
-
+    private final Random rand = new Random();
 
     @EventHandler
-    private void onClick(PlayerInteractEvent event) {
-
+    private void on(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-
-        if (player.getGameMode() == GameMode.SPECTATOR) {
-
-            Action action = event.getAction();
-
-            if (action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK) {
-
-                Random r = new Random();
-                ArrayList<Player> players = new ArrayList<>();
-                for (Player online : Bukkit.getServer().getOnlinePlayers()) {
-                    if (online == player) {
-                    } else
-                        players.add(online);
-                }
-                if (players.isEmpty()) {
-                    player.sendMessage(ChatColor.RED +  "Could not find anyone to teleport to.");
-                    return;
-                }
-                int index = r.nextInt(players.size());
-                Player target = players.get(index);
-                player.teleport(target);
-                player.sendMessage("§bTelporting you to " + ChatColor.GOLD + target.getName() + "§7.");
-            }
+        
+        if (player.getGameMode != GameMode.SPECTATOR) {
+            return;
         }
+        
+        Action action = event.getAction();
+        
+        if (!action.equals(Action.LEFT_CLICK_AIR) && !action.equals(Action.LEFT_CLICK_BLOCK) {
+            return;
+        }
+
+        List<Player> players = Lists.newArrayList(Bukkit.getOnlinePlayers());
+        players.remove(player); // we don't want the player to teleport to themselves.
+        
+        if (players.isEmpty()) {
+            player.sendMessage(ChatColor.RED +  "Could not find anyone to teleport to.");
+            return;
+        }
+        
+        Player target = players.get(rand.nextInt(players.size()));
+        
+        player.teleport(target);
+        player.sendMessage(ChatColor.AQUA + "Telporting you to " + ChatColor.GOLD + target.getName() + ChatColor.AQUA + ".");
     }
 }
-
-
